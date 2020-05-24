@@ -1,0 +1,263 @@
+body {
+ background-color: #fafafa;
+}
+
+.container {
+  padding: 40px 0 100px 0;
+  width: 60%;
+}
+
+.container h1:first-child {
+  font-size: 40px;
+  padding-bottom: 10px;
+}
+
+.homeLink {
+  color: black;
+}
+
+.homeLink:hover {
+  color: black;
+  opacity: 1;
+}
+
+.message {
+  position: fixed !important;
+  left: 30px !important;
+  bottom: 20px !important;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.post-action-button {
+  padding-left: 10px;
+  padding-bottom: 15px;
+}
+
+.homepage-actions {
+  padding-bottom: 20px;
+}
+
+.cardActions {
+  padding-top: 5px;
+}
+
+.margin-left-10 {
+  margin-left: 10px;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #0069d9;
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  margin: -75px 0 0 -75px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+.addpost-image-container {
+  position: relative;
+}
+
+.addpost-image-container button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border-radius: 50% !important;
+}
+
+.addpost-image {
+  max-width: 100%;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.cards {
+  width: 70%;
+  margin: auto;
+}
+
+.cards .card-content:not(:first-child) {
+  margin-top: 20px;
+}
+
+.profile-picture {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.userLink {
+  color: black;
+  font-weight: 700;
+}
+
+.profilePictureContainer {
+  position: relative;
+}
+
+.profilePictureContainer Button {
+  position: absolute;
+  right: 7px;
+  top: 10px;
+  background-color: #f2f2f2;
+}
+
+#profilePictureInput {
+  display: none;
+}
+
+.profileContent {
+  margin-left: 20px !important;
+}
+
+.userLink:hover {
+  color: black;
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.comment-group {
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.likes-group {
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.add-post-button {
+  margin-bottom: 15px;
+}
+
+.search-container {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#search-input {
+  width: 300px;
+}
+
+.users-row .user-card:not(:nth-child(-n+3)) {
+  margin-top: 8%;
+}
+
+.user-card {
+  height: 500px;
+}
+
+.card-description {
+  height: 150px;
+  overflow-y: auto;
+}
+
+.card-image {
+  max-height: 450px;
+}
+
+.editable {
+  width: 300px;
+  height: 200px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  resize: both;
+  overflow: auto;
+}
+
+.seeMoreButton, .showLessButton {
+  color: black;
+  padding: 0;
+  background: none;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.seeMoreButton:focus, .showLessButton:focus {
+  outline: 0;
+}
+
+.seeMoreButton:hover {
+  text-decoration: underline;
+}
+
+.postContent {
+  white-space: pre-wrap;
+}
+
+.profileMeta p {
+  margin-bottom: 3px !important;
+  padding: 0 !important;
+}
+
+.profileDescription {
+  white-space: pre-wrap;
+  line-height: 1.5px;
+}
+
+@media (max-width: 990px) {
+  .users-row .user-card:not(:nth-child(-n+2)) {
+    margin-top: 1%;
+  }
+
+  .profileContent {
+    margin-left: 0px !important;
+    margin-top: 20px !important;
+  }
+}
+
+@media (max-width: 766px) {
+  .users-row .user-card:not(:first-child) {
+    margin-top: 23%;
+  }
+
+  .users-row .user-card .users-card-content {
+    width: 90%;
+    margin: auto;
+  }
+
+  .user-card {
+    height: 550px;
+  }
+
+  .container {
+    width: 100%;
+  }
+
+  .cards {
+    width: 90%;
+  }
+
+  .homepage-actions {
+    text-align: center;
+  }
+
+  .add-post-button {
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+}
