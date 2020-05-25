@@ -1,5 +1,78 @@
 import { gql  } from '@apollo/client'
 
+const COMMENT_DETAILS = gql`
+  fragment CommentDetails on Comment {
+    content
+    date
+    id
+    user {
+      id
+      username
+      profilePicture {
+        imageUrl
+      }
+    }
+  }
+`
+
+const POST_DETAILS = gql`
+  fragment PostDetails on Post {
+    content
+    date
+    time
+    id
+    image {
+      imageUrl
+    }
+    user {
+      id
+      username
+      name
+      profilePicture {
+        imageUrl
+      }
+    }
+    comments {
+      content
+      date
+      user {
+        username
+        profilePicture {
+          imageUrl
+        }
+      }
+    }
+    likes {
+      date
+      time
+      id
+      user {
+        id
+        username
+        profilePicture {
+          imageUrl
+        }
+      }
+    }
+  }
+`
+
+const MESSAGE_DETAILS = gql`
+  fragment MessageDetails on Message {
+    message
+    id
+    date
+    user {
+      name
+      id
+      username
+      profilePicture {
+        imageUrl
+      }
+    }
+  }
+`
+
 export const LOGIN = gql`
   mutation login($username: String!, $password: String!) {
     login(username: $username, password: $password)  {
@@ -32,33 +105,19 @@ export const ADD_LIKE = gql`
 export const ADD_COMMENT = gql`
   mutation addComment($post: String!, $content: String!) {
     addComment(post: $post, content: $content) {
-      content
-      date
-      user {
-        id
-        username
-        profilePicture {
-          imageUrl
-        }
-      }
+      ...CommentDetails
     }
   }
+  ${COMMENT_DETAILS}
 `
 
 export const ALL_COMMENTS = gql`
   query allComments($post: String){
     allComments(post: $post) {
-      content
-      date
-      user {
-        id
-        username
-        profilePicture {
-          imageUrl
-        }
-      }
+      ...CommentDetails
     }
   }
+  ${COMMENT_DETAILS}
 `
 
 export const UPLOAD_FILE = gql`
@@ -116,27 +175,37 @@ export const DELETE_POST = gql`
 export const ADD_POST = gql`
   mutation addPost($content: String!, $file: Upload) {
     addPost(content: $content, file: $file) {
-      content
-      date
-      time
-      id
-      user {
-        username
-      }
-      comments {
-        content
-      }
-      likes {
-        date
-        time
-        id
-        user {
-          id
-          username
-        }
-      }
+      ...PostDetails
     }
   }
+  ${POST_DETAILS}
+`
+
+export const ADD_MESSAGE = gql`
+  mutation addMessage($message: String!) {
+    addMessage(message: $message) {
+      ...MessageDetails
+    }
+  }
+  ${MESSAGE_DETAILS}
+`
+
+export const ALL_MESSAGES = gql`
+  query {
+    allMessages {
+      ...MessageDetails
+    }
+  }
+  ${MESSAGE_DETAILS}
+`
+
+export const MESSAGE_ADDED = gql`
+  subscription {
+    messageAdded {
+      ...MessageDetails
+    }
+  }
+  ${MESSAGE_DETAILS}
 `
 
 export const ALL_USERS = gql`
@@ -162,44 +231,10 @@ export const ALL_USERS = gql`
 export const ALL_POSTS = gql`
   query {
     allPosts {
-      content
-      date
-      time
-      id
-      image {
-        imageUrl
-      }
-      user {
-        id
-        username
-        profilePicture {
-          imageUrl
-        }
-      }
-      comments {
-        content
-        date
-        user {
-          username
-          profilePicture {
-            imageUrl
-          }
-        }
-      }
-      likes {
-        date
-        time
-        id
-        user {
-          id
-          username
-          profilePicture {
-            imageUrl
-          }
-        }
-      }
+      ...PostDetails
     }
   }
+  ${POST_DETAILS}
 `
 
 export const GET_USER = gql`
@@ -216,4 +251,13 @@ export const GET_USER = gql`
       }
     }
   }
+`
+
+export const POST_ADDED = gql`
+  subscription {
+    postAdded {
+      ...PostDetails
+    }
+  }
+  ${POST_DETAILS}
 `

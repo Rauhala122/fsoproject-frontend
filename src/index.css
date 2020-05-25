@@ -27,6 +27,14 @@ body {
   bottom: 20px !important;
 }
 
+.updatePostsButton {
+  margin: auto;
+  display: block;
+  padding: 5px 70px;
+  border-radius: 40px;
+  margin-bottom: 10px;
+}
+
 .center {
   text-align: center;
 }
@@ -140,7 +148,9 @@ body {
 
 .comment-group {
   max-height: 50vh;
-  overflow-y: auto;
+  overflow: auto;
+  flex: auto;
+  flex-direction: column;
 }
 
 .likes-group {
@@ -216,6 +226,65 @@ body {
 .profileDescription {
   white-space: pre-wrap;
   line-height: 1.5px;
+}
+
+.messageContainer {
+  padding: 5% 0;
+  overflow: auto;
+  flex: auto;
+  flex-direction: column;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  width: 100%;
+}
+
+.leftMessage {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 3px;
+  margin-left: 10px !important;
+  border-radius: 20px !important;
+}
+
+.rightMessage {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 3px;
+  margin-right: 10px !important;
+}
+
+.messageBox {
+  display: inline-block;
+  width: 60%;
+  white-space: pre-wrap;
+  padding: 10px 10px 0 10px;
+  border-radius: 5px;
+  background: #e4e6eb;
+}
+
+.messageBoxBlue {
+  background: #2979FF !important;
+}
+
+.messageBox div, .messageBox a {
+  color: rgba(0, 0, 0, 0.87) !important;
+}
+
+.messageBoxBlue div, .messageBoxBlue a {
+  color: rgba(255, 255, 255, 0.87) !important;
+}
+
+.pl-5 {
+  margin-left: 5px !important;
+}
+
+.justifyStart {
+  justify-content: flex-start;
+}
+
+.justifyEnd {
+  justify-content: flex-end;
 }
 
 @media (max-width: 990px) {

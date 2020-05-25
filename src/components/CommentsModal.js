@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useImperativeHandle} from 'react'
+import React, {useState, useEffect, useImperativeHandle, useRef} from 'react'
 import { useMutation, useLazyQuery } from '@apollo/client'
 import {ADD_COMMENT, ALL_POSTS, ALL_COMMENTS} from '../queries'
 import { Modal } from 'react-bootstrap';
@@ -12,13 +12,10 @@ const CommentsModal = React.forwardRef(({showCommentsModal, setShowCommentsModal
   const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false)
   const [submitButtonContent, setSubmitButtonContent] = useState("Add Comment")
 
-  const commentGroup = React.createRef();
+  const commentGroup = useRef(null);
 
   const [getComments, {data, refetch, loading, networkStatus}] = useLazyQuery(ALL_COMMENTS, {
-    notifyOnNetworkStatusChange: true,
-    onCompleted: () => {
-      scrollToBottom()
-    }
+    notifyOnNetworkStatusChange: true
   })
 
   const [addComment, addCommentResult] = useMutation(ADD_COMMENT, {
@@ -49,7 +46,7 @@ const CommentsModal = React.forwardRef(({showCommentsModal, setShowCommentsModal
   }, [addCommentResult.data])
 
   const scrollToBottom = () => {
-    commentGroup.current.scrollTop = commentGroup.current.scrollHeight
+    commentGroup.current.scrollIntoView({ behavior: 'smooth' })
   }
 
   useImperativeHandle(ref, () => {
@@ -90,6 +87,7 @@ const CommentsModal = React.forwardRef(({showCommentsModal, setShowCommentsModal
             </Comment.Content>
           </Comment>
         )}
+        <div ref={commentGroup}/>
       </div>
     )
   }
@@ -121,7 +119,7 @@ const CommentsModal = React.forwardRef(({showCommentsModal, setShowCommentsModal
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <div ref={commentGroup} className="comment-group" id="comment-group">
+        <div className="comment-group" id="comment-group">
           <Comment.Group>
             {renderComments()}
           </Comment.Group>

@@ -1,8 +1,6 @@
 export const setPublishedTime = (object) => {
   const date1 = new Date(object.date);
   const date2 = new Date()
-  console.log(date1)
-  console.log(date2)
   const difference = date2 - date1;
   const diff_result = new Date(difference);
 

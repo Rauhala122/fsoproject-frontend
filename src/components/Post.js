@@ -49,6 +49,11 @@ const Post = ({p, setSelectedPost, setShowLikesModal, setShowCommentsModal, remo
     unlike({variables: {post: post.id}})
   }
 
+
+  if (!user) {
+    return null
+  }
+
   const renderLikeButton = (post) => {
     console.log("Post likes, ", post.likes)
     if (post.likes.filter(l => l.user.username === user.username).length === 0) {
